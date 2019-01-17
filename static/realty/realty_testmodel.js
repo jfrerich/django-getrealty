@@ -10,11 +10,11 @@ $(document).ready(function() {
              targets: [0, 1]
             },
             {
-                name: 'name',
+                name: 'r_num',
                 targets: [0]
             },
             {
-                name: 'description',
+                name: 'Property_Interest',
                 targets: [1]
             }
         ],

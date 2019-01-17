@@ -4,9 +4,9 @@
 {% block extra_head %}
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-    <script src="{% static "ddv_example/ddv_example_testmodel.js" %}"></script>
+    <script src="{% static "ddv_example/ddv_example_1_10.js" %}"></script>
     <script type="text/javascript">
-        var TESTMODEL_LIST_JSON_URL = '{% url "testmodel_list_json" %}';
+        var USERS_LIST_JSON_URL = '{% url "users_list_json_110" %}';
         // translations for datatables
 
         var dt_language = {
@@ -38,8 +38,8 @@
 {% block content %}
     <table class="datatable">
         <thead>
-            <th>{% trans "Name" %}</th>
-            <th>{% trans "Description" %}</th>
+            <th>{% trans "Username" %}</th>
+            <th>{% trans "E-mail" %}</th>
         </thead>
         <tbody>
         </tbody>
