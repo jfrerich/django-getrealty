@@ -51,12 +51,52 @@ $(document).ready(function() {
             },
             {
                 name: 'Files_xx_BillsF',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'Bills' + '</a>';
+                  return data; 
+                },    
                 targets: [3]
-                // render: function(data, type, row, meta){
-                //   data = '<a class="clickablename" href="#testPagejunk">' + data + '</a>';
-                //   return data; 
-                // }    
-            }
+            },
+            {
+                name: 'Files_xx_DetF',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'Det' + '</a>';
+                  return data; 
+                },    
+                targets: [4]
+            },
+            {
+                name: 'Files_xx_HistF',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'Hist' + '</a>';
+                  return data; 
+                },    
+                targets: [5]
+            },
+            {
+                name: 'Files_xx_DataF',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'Data' + '</a>';
+                  return data; 
+                },    
+                targets: [6]
+            },
+            {
+                name: 'Maps_xx_GIS',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'GIS' + '</a>';
+                  return data; 
+                },    
+                targets: [7]
+            },
+            {
+                name: 'Maps_xx_Map',
+                render: function(data, type, row, meta){
+                  data = '<a class="clickablename" href="#testPagejunk">' + 'Map' + '</a>';
+                  return data; 
+                },    
+                targets: [8]
+            },
         ],
         'rowCallback': function(row, data, index){
 
@@ -201,9 +241,9 @@ console.log(TESTMODEL_LIST_JSON_URL)
   <table class="datatable compact">
     <thead>
       <tr style="text-align: center;">
-        <th colspan="2"></th>
+        <th colspan="3"></th>
         <th style="background-color: #757575; border-right:1px solid #000" colspan="4">Links</th>
-        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="2">Maps</th> -->
+        <th style="background-color: #757575; border-right:1px solid #000" colspan="2">Maps</th>
         <!-- <th colspan="2"></th> -->
         <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="3">Prop_Details</th> -->
         <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="2">Tax_Due</th>	 -->
@@ -217,6 +257,11 @@ console.log(TESTMODEL_LIST_JSON_URL)
             <th>{% trans "rpg" %}</th>
             <th>{% trans "Property_Interest" %}</th>
             <th>{% trans "BillsF" %}</th>
+            <th>{% trans "DetF" %}</th>
+            <th>{% trans "HistF" %}</th>
+            <th>{% trans "DataF" %}</th>
+            <th>{% trans "GIS" %}</th>
+            <th>{% trans "Map" %}</th>
       </tr>
     </thead>
     <tbody>

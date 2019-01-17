@@ -4,13 +4,13 @@ from django.db import models
 class TestModel(models.Model):
     r_num = models.TextField('r_num', max_length=100, default='')
     rpg = models.TextField('rpg', default='')
-    Property_Interest = models.TextField('Property_Interest', max_length=100, default='')
+    Property_Interest = models.TextField('Property_Interest', default='')
     Files_xx_BillsF = models.TextField('Files_xx_BillsF', default='')
-    # Files___HistF = models.TextField('Property_Interest', max_length=100, default='')
-    # Files___DetF = models.TextField('Property_Interest', max_length=100, default='')
-    # new Field('Files___DataF'),
-    # new Field('Maps___GIS'),
-    # new Field('Maps___Map'),
+    Files_xx_HistF = models.TextField('Files_xx_HistF', default='')
+    Files_xx_DetF = models.TextField('Files_xx_DetF', default='')
+    Files_xx_DataF = models.TextField('Files_xx_DataF', default='')
+    Maps_xx_GIS = models.TextField('Maps___GIS', default=''),
+    Maps_xx_Map = models.TextField('Maps___Map', default=''),
     # 'NOTES'
     Subd = models.TextField('Subd', default='')
     # 'Prop_Details___Acres'),
