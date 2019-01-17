@@ -4,9 +4,171 @@
 {% block extra_head %}
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-    <script src="{% static "ddv_example/ddv_example_testmodel.js" %}"></script>
+    <!-- <script src="{% static "realty/realty_testmodel.js" %}"></script> -->
+
+
+<script>
+$(document).ready(function() {
+    var dt_table = $('.datatable').dataTable({
+      dom: "flrtip",
+      language: dt_language,  // global variable defined in html
+      order: [[ 0, "desc" ]],
+      lengthMenu: [[25, 50, 100, 200], [25, 50, 100, 200]],
+        // columns: [
+        //   { data: "r_num",
+        //       render: function(data, type, row, meta){
+        //         // data = '<a id="clickable_rnum" href="' + data + '">' + data + '</a>';
+        //         data = '<a class="clickablename" href="#testPagejunk">' + data + '</a>';
+        //         return data; 
+        //       }
+        //   },
+        //   { data: "Property_Interest" },
+        searching: true,
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: {
+          dataType: "json", 
+          contentType: "application/json",
+          url: TESTMODEL_LIST_JSON_URL},
+        columnDefs: [
+            {orderable: true,
+            searchable: true,
+            className: "center",
+            targets: [0, 1, 2, 3]
+            },
+            {
+                name: 'r_num',
+                targets: [0]
+            },
+            {
+                name: 'rpg',
+                targets: [1]
+            },
+            {
+                name: 'Property_Interest',
+                targets: [2]
+            },
+            {
+                name: 'Files_xx_BillsF',
+                targets: [3]
+                // render: function(data, type, row, meta){
+                //   data = '<a class="clickablename" href="#testPagejunk">' + data + '</a>';
+                //   return data; 
+                // }    
+            }
+        ],
+        'rowCallback': function(row, data, index){
+
+          // $("thead ").css("border-right: 1px solid #ddd");
+          // $(row).css('background-color', '#B8B8B8');
+          // window.alert('jason - TEST row=' + row + 'data=' + data.rpg)
+
+          // r_num
+          if(/^M/.test(data.r_num)){ 
+              $('td:eq(0)',row).css('background-color', '#BFECC7');
+          } else {
+              $('td:eq(0)',row).css('background-color', '#B8B8B8');
+          }
+
+          // Property Interest
+          if(/Not Vetted/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FFF381');
+          } else if(/Vetting/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FF8EC5');
+          } else if(/Vetted - Other/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FF5B01');
+          } else if(/Vetted - No Good/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#D80608');
+          } else if(/Vetted - Need to Call/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#8FC502');
+          } else if(/Owner Called - No contact/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FF8E02');
+          } else if(/Owner Called - Low Interest/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#015912');
+          } else if(/Owner Called - High Interest/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#1DAE15');
+          } else if(/Owner Called - Will not sell/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FE9D3E');
+          } else if(/Owner Called - Negotiating/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#8EC5FF');
+          } else if(/Prop - Sold/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#FFC502');
+          } else if(/Prop - Bought/.test(data[2])) { 
+              $('td:eq(2)',row).css('background-color', '#45DE4D');
+          }
+
+          if(data.Maps___map== 'n/a'){ // map
+              $(row).find('td:eq(7)').css('background-color', '#FFC502');
+          }
+
+          if(data.Tax_Due___PctToAss < 5){ 
+              $('td:eq(13)',row).css('background-color', '#BFECC7');
+          } else if(data.Tax_Due___PctToAss >= 5 && data.Tax_Due___PctToAss <= 20) { 
+              $('td:eq(13)',row).css('background-color', '#FFC502');
+          } else if(data.Tax_Due___PctToAss > 20){ 
+              $('td:eq(13)',row).css('background-color', '#FF8EC5');
+          }
+
+          if(/^0/.test(data.Different___Addr)) { 
+              $('td:eq(19)',row).css('background-color', '#FF8EC5');
+          } else if(/^1/.test(data.Different___Addr)) { 
+              $('td:eq(19)',row).css('background-color', '#BFECC7');
+          } else if(data.Different___Addr == 'n/a') { 
+              $('td:eq(19)',row).css('background-color', '#FFC502');
+          }
+
+          if(data.Different___Zip == 0) { 
+              $('td:eq(20)',row).css('background-color', '#FF8EC5');
+          } else if(data.Different___Zip == 1) { 
+              $('td:eq(20)',row).css('background-color', '#BFECC7');
+          } else if(data.Different___Zip == 'n/a') { 
+              $('td:eq(20)',row).css('background-color', '#FFC502');
+          }
+
+          if(data.Different___State == 0) { 
+              $('td:eq(21)',row).css('background-color', '#FF8EC5');
+          } else if(/1 - \S\S/.test(data.Different___State)) { 
+              $('td:eq(21)',row).css('background-color', '#BFECC7');
+          } else if(data.Different___State == 'n/a') { 
+              $('td:eq(21)',row).css('background-color', '#FFC502');
+          }
+
+          if(data.NHS_imp == 1) { 
+              $('td:eq(22)',row).css('background-color', '#BFECC7');
+          } else if(data.NHS_imp == 0) { 
+              $('td:eq(22)',row).css('background-color', '#FF8EC5');
+          }
+          $('td:eq(26)',row).css('background-color', '#B8B8B8'); // Appraised___AppPctOfMax
+          $('td:eq(31)',row).css('background-color', '#B8B8B8'); // Assessed___AssPctOfMax
+          $('td:eq(36)',row).css('background-color', '#B8B8B8'); // ImpNHS___LastPctOfMax
+          $('td:eq(41)',row).css('background-color', '#B8B8B8'); // IMPHS___ihsAppPctOfMax
+          $('td:eq(46)',row).css('background-color', '#B8B8B8'); // LandHS___lhsAppPctOfMax
+          $('td:eq(51)',row).css('background-color', '#B8B8B8'); // LandNHS___lnhsAppPctOfMax
+
+          if(/^1/.test(data.PctDiffAddr)) { 
+              $('td:eq(58)',row).css('background-color', '#FBECC7');
+          } else if(/^0/.test(data.PctDiffAddr)) { 
+              $('td:eq(58)',row).css('background-color', '#FF8EC5');
+          } else if(data.PctDiffAddr == 'n/a') { 
+              $('td:eq(58)',row).css('background-color', '#FFC502');
+          }
+
+		    },
+    });
+});
+
+</script>
+
+
+
+
+
+
+
     <script type="text/javascript">
         var TESTMODEL_LIST_JSON_URL = '{% url "testmodel_list_json" %}';
+console.log(TESTMODEL_LIST_JSON_URL)
         // translations for datatables
 
         var dt_language = {
@@ -36,12 +198,28 @@
 {% endblock %}
 
 {% block content %}
-    <table class="datatable">
-        <thead>
-            <th>{% trans "Name" %}</th>
-            <th>{% trans "Description" %}</th>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+  <table class="datatable compact">
+    <thead>
+      <tr style="text-align: center;">
+        <th colspan="2"></th>
+        <th style="background-color: #757575; border-right:1px solid #000" colspan="4">Links</th>
+        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="2">Maps</th> -->
+        <!-- <th colspan="2"></th> -->
+        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="3">Prop_Details</th> -->
+        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="2">Tax_Due</th>	 -->
+        <!-- <th colspan="1"></th> -->
+        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="3">TaxDates</th> -->
+        <!-- <th style="background&#45;color: #757575; border&#45;right:1px solid #000" colspan="3">Different	</th> -->
+        <!-- <th colspan="2"></th> -->
+      </tr>
+      <tr style="border-right:1px border-top:1px solid #000; background-color:#B8B8B8">
+            <th>{% trans "r_num" %}</th>
+            <th>{% trans "rpg" %}</th>
+            <th>{% trans "Property_Interest" %}</th>
+            <th>{% trans "BillsF" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 {% endblock %}
