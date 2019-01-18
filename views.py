@@ -6,18 +6,33 @@ from realty.models import TestModel
 
 
 def home(request):
-    return render(request, 'realty/index.html')
-    # template_name = 'realty/viewDb.html'
+    return render(request, 'realty/index.html', {'nbar': 'realty'})
 
 
 def viewDb(request):
-    print("In Here!")
-    return render(request, 'viewDb.html')
-    # template_name = 'realty/viewDb.html'
+    # return render(request, 'realty/viewDb.html')
+    return render(request, 'realty/testmodel_list.html', {'nbar': 'realty'})
+    # template_name = 'realty/testmodel_list.html'
 
 
 def overview(request):
-    return render(request, 'realty/overview.html')
+    return render(request, 'realty/overview.html', {'nbar': 'realty'})
+
+
+def query(request):
+    return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
+
+
+def detail(request):
+    return render(request, 'realty/propertydetail.html', {'nbar': 'realty'})
+
+
+def testpage(request):
+    return render(request, 'realty/test_page.html', {'nbar': 'realty'})
+
+
+def testPage2(request):
+    return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
 
 
 class TestModelList(TemplateView):
