@@ -9,7 +9,7 @@
 
     <script>
     $(document).ready(function() {
-        var dt_table = $('.datatable').dataTable({
+        $('#viewdbtable').dataTable({
             dom: "flrtip",
             language: dt_language,  // global variable defined in html
             order: [[ 0, "desc" ]],
@@ -137,7 +137,18 @@
               }
 
             },
-        });
+          });
+
+          // https://stackoverflow.com/questions/35547647/how-to-make-datatable-row-or-cell-clickable
+          $('#viewdbtable').on('click', 'tbody td', function() {
+            //get textContent of the TD
+            console.log('TD cell textContent : ', this.textContent)
+
+            $(".tab-pane").removeClass("active in");
+            $("#propertyDetailPage").addClass("active in");
+            $('a[data-target="#propertyDetailPage"]').tab('show');
+            return false;
+          })
     });
 
     </script>
@@ -173,7 +184,7 @@
 {% endblock %}
 
 {% block content %}
-  <table class="datatable display compact nowrap">
+  <table id="viewdbtable" class="datatable display compact nowrap">
     <thead>
       <tr style="text-align: center;">
         <th colspan="2"></th>

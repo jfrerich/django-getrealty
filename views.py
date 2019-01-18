@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
-from django.utils.html import escape, format_html
+from django.utils.html import format_html
 import re
 
 from realty.models import RealtyModel
@@ -109,25 +109,38 @@ class ViewDbListJson(BaseDatatableView):
                ]
 
     def render_column(self, row, column):
-        # We want to render user as a custom column
-    # data = '<a class="clickablename" href="#testPagejunk">' + data + '</a>';
+        # render custom columns
+
+        # r_num column
+        if column == 'r_num':
+            my_rnumber = '{0}'.format(row.r_num)
+            link = format_html(
+                # "<a class=\"clickablename\" href=\"Junk\">{}</a>",
+                "<a class=\"clickablename\" href=\"#testPageJunk\">{}</a>",
+                my_rnumber)
+            return link
+
         # if column == 'Files_xx_BillsF':
         m = re.search(r"Files_xx_(\w+)F", column)
         if m:
             link_name = m.group(1)
             my_file = '{0}'.format(row.Files_xx_BillsF)
-            link = format_html("<a class=\"clickablename\" href=\"{}\">{}</a>", my_file, link_name)
+            link = format_html("<a class=\"clickablename\" href=\"{}\">{}</a>",
+                               my_file, link_name)
             return link
 
-        m = re.search(r"Maps_xx_GIS", column)
+        # Maps columns
         if column == 'Maps_xx_GIS':
             my_file = '{0}'.format(row.Maps_xx_GIS)
-            link = format_html("<a class=\"clickablename\" href=\"{}\">GIS</a>", my_file)
+            link = format_html(
+                "<a class=\"clickablename\" href=\"{}\">GIS</a>",
+                my_file)
             return link
 
         # if column == 'user':
         #     # escape HTML for security reasons
-        #     # return escape('{0} {1}'.format(row.customer_firstname, row.customer_lastname))
+            # return escape('{0} {1}'.format(row.customer_firstname,
+            #                                row.customer_lastname))
         #     return 'link'
         else:
             return super(ViewDbListJson, self).render_column(row, column)
