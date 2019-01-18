@@ -9,63 +9,63 @@ class RealtyModel(models.Model):
     Files_xx_HistF = models.TextField('Files_xx_HistF', default='')
     Files_xx_DetF = models.TextField('Files_xx_DetF', default='')
     Files_xx_DataF = models.TextField('Files_xx_DataF', default='')
-    Maps_xx_GIS = models.TextField('Maps___GIS', default=''),
-    Maps_xx_Map = models.TextField('Maps___Map', default=''),
-    # 'NOTES'
+    Maps_xx_GIS = models.TextField('Maps___GIS', default='')
+    Maps_xx_Map = models.TextField('Maps___Map', default='')
+    NOTES = models.TextField('NOTES', default='')
     Subd = models.TextField('Subd', default='')
-    # 'Prop_Details___Acres'),
-    # 'Prop_Details___AssessVal'),
-    # 'Prop_Details___AssessMinDue'),
-    # 'Tax_Due___PctToAss'),
-    # 'Tax_Due___TotAmtDue'),
-    # 'DatePulled'),
-    # new Field('TaxDates___OldestDue'),
-    # new Field('TaxDates___LastPaid'),
-    # new Field('TaxDates___LastYrPaid'),
-    # new Field('Different___Addr'),
-    # new Field('Different___Zip'),
-    # new Field('Different___State'),
-    # new Field('NHS_imp'),
-    # new Field('InstallYr'),
-    # new Field('TimesSold___Num'),
-    # new Field('TimesSold___Last'),
-    # new Field('Appraised___AppPctOfMax'),
-    # new Field('Appraised___AppLastVal'),
-    # new Field('Appraised___AppMaxVal'),
-    # new Field('AppraisedMaxReduced___AppMaxAmt'),
-    # new Field('AppraisedMaxReduced___AppMaxYr'),
-    # new Field('Assess___AssPctOfMax'),
-    # new Field('Assess___AssLastVal'),
-    # new Field('Assess___AssMaxVal'),
-    # new Field('AssessMaxReduced___AssMaxAmt'),
-    # new Field('AssessMaxReduced___AssMaxYr'),
-    # new Field('ImpNHS___LastPctOfMax'),
-    # new Field('ImpNHS___LastVal'),
-    # new Field('ImpNHS___MaxVal'),
-    # new Field('ImpNHSMaxReduced___MaxAmt'),
-    # new Field('ImpNHSMaxReduced___MaxYr'),
-    # new Field('ImpHS___ihsPctOfMax'),
-    # new Field('ImpHS___ihsLastVal'),
-    # new Field('ImpHS___ihsMaxVal'),
-    # new Field('ImpHSMaxReduced___ihsMaxAmt'),
-    # new Field('ImpHSMaxReduced___ihsMaxYr'),
-    # new Field('LandHS___lhsPctOfMax'),
-    # new Field('LandHS___lhsLastVal'),
-    # new Field('LandHS___lhsMaxVal'),
-    # new Field('LandHSMaxReduced___lhsMaxAmt'),
-    # new Field('LandHSMaxReduced___lhsMaxYr'),
-    # new Field('LandNHS___lnhsPctOfMax'),
-    # new Field('LandNHS___lnhsLastVal'),
-    # new Field('LandNHS___lnhsMaxVal'),
-    # new Field('LandNHSMaxReduced___lnhsMaxAmt'),
-    # new Field('LandNHSMaxReduced___lnhsMaxYr'),
-    # new Field('DaysLate___Curr'),
-    # new Field('DaysLate___Max'),
-    # new Field('PctDiffAddr'),
-    # new Field('PropAddr'),
-    # new Field('OwnerAddr'),
-    # new Field('OwnerName'),
-    # new Field('LegalDesc'),
+    Prop_Details_xx_Acres = models.TextField('Prop_Details___Acres', default='')
+    Prop_Details_xx_AssessVal = models.TextField('Prop_Details_xx_AssessVal', default='')
+    Prop_Details_xx_AssessMinDue = models.TextField('Prop_Details_xx_AssessMinDue', default='')
+    Tax_Due_xx_PctToAss = models.TextField('Tax_Due_xx_PctToAss', default='')
+    Tax_Due_xx_TotAmtDue = models.TextField('Tax_Due_xx_TotAmtDue', default='')
+    DatePulled = models.TextField('DatePulled', default='')
+    TaxDates_xx_OldestDue = models.TextField('TaxDates_xx_OldestDue', default='')
+    TaxDates_xx_LastPaid = models.TextField('TaxDates_xx_LastPaid', default='')
+    TaxDates_xx_LastYrPaid = models.TextField('TaxDates_xx_LastYrPaid', default='')
+    Different_xx_Addr = models.TextField('Different_xx_Addr', default='')
+    Different_xx_Zip = models.TextField('Different_xx_Zip', default='')
+    Different_xx_State = models.TextField('Different_xx_State', default='')
+    NHS_imp = models.TextField('NHS_imp', default='')
+    InstallYr = models.TextField('InstallYr', default='')
+    TimesSold_xx_Num = models.TextField('TimesSold_xx_Num', default='')
+    TimesSold_xx_Last = models.TextField('TimesSold_xx_Last', default='')
+    Appraised_xx_AppPctOfMax = models.TextField('Appraised_xx_AppPctOfMax', default='')
+    Appraised_xx_AppLastVal = models.TextField('Appraised_xx_AppLastVal', default='')
+    Appraised_xx_AppMaxVal = models.TextField('Appraised_xx_AppMaxVal', default='')
+    AppraisedMaxReduced_xx_AppMaxAmt = models.TextField('AppraisedMaxReduced_xx_AppMaxAmt', default='')
+    AppraisedMaxReduced_xx_AppMaxYr = models.TextField('AppraisedMaxReduced_xx_AppMaxYr', default='')
+    Assess_xx_AssPctOfMax = models.TextField('Assess_xx_AssPctOfMax', default='')
+    Assess_xx_AssLastVal = models.TextField('Assess_xx_AssLastVal', default='')
+    Assess_xx_AssMaxVal = models.TextField('Assess_xx_AssMaxVal', default='')
+    AssessMaxReduced_xx_AssMaxAmt = models.TextField('AssessMaxReduced_xx_AssMaxAmt', default='')
+    AssessMaxReduced_xx_AssMaxYr = models.TextField('AssessMaxReduced_xx_AssMaxYr', default='')
+    ImpNHS_xx_LastPctOfMax = models.TextField('ImpNHS_xx_LastPctOfMax', default='')
+    ImpNHS_xx_LastVal = models.TextField('ImpNHS_xx_LastVal', default='')
+    ImpNHS_xx_MaxVal = models.TextField('ImpNHS_xx_MaxVal', default='')
+    ImpNHSMaxReduced_xx_MaxAmt = models.TextField('ImpNHSMaxReduced_xx_MaxAmt', default='')
+    ImpNHSMaxReduced_xx_MaxYr = models.TextField('ImpNHSMaxReduced_xx_MaxYr', default='')
+    ImpHS_xx_ihsPctOfMax = models.TextField('ImpHS_xx_ihsPctOfMax', default='')
+    ImpHS_xx_ihsLastVal = models.TextField('ImpHS_xx_ihsLastVal', default='')
+    ImpHS_xx_ihsMaxVal = models.TextField('ImpHS_xx_ihsMaxVal', default='')
+    ImpHSMaxReduced_xx_ihsMaxAmt = models.TextField('ImpHSMaxReduced_xx_ihsMaxAmt', default='')
+    ImpHSMaxReduced_xx_ihsMaxYr = models.TextField('ImpHSMaxReduced_xx_ihsMaxYr', default='')
+    LandHS_xx_lhsPctOfMax = models.TextField('LandHS_xx_lhsPctOfMax', default='')
+    LandHS_xx_lhsLastVal = models.TextField('LandHS_xx_lhsLastVal', default='')
+    LandHS_xx_lhsMaxVal = models.TextField('LandHS_xx_lhsMaxVal', default='')
+    LandHSMaxReduced_xx_lhsMaxAmt = models.TextField('LandHSMaxReduced_xx_lhsMaxAmt', default='')
+    LandHSMaxReduced_xx_lhsMaxYr = models.TextField('LandHSMaxReduced_xx_lhsMaxYr', default='')
+    LandNHS_xx_lnhsPctOfMax = models.TextField('LandNHS_xx_lnhsPctOfMax', default='')
+    LandNHS_xx_lnhsLastVal = models.TextField('LandNHS_xx_lnhsLastVal', default='')
+    LandNHS_xx_lnhsMaxVal = models.TextField('LandNHS_xx_lnhsMaxVal', default='')
+    LandNHSMaxReduced_xx_lnhsMaxAmt = models.TextField('LandNHSMaxReduced_xx_lnhsMaxAmt', default='')
+    LandNHSMaxReduced_xx_lnhsMaxYr = models.TextField('LandNHSMaxReduced_xx_lnhsMaxYr', default='')
+    DaysLate_xx_Curr = models.TextField('DaysLate_xx_Curr', default='')
+    DaysLate_xx_Max = models.TextField('DaysLate_xx_Max', default='')
+    PctDiffAddr = models.TextField('PctDiffAddr', default='')
+    PropAddr = models.TextField('PropAddr', default='')
+    OwnerAddr = models.TextField('OwnerAddr', default='')
+    OwnerName = models.TextField('OwnerName', default='')
+    LegalDesc = models.TextField('LegalDesc', default='')
 
     class Meta:
         # managed = True
