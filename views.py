@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
-from realty.models import TestModel
+from realty.models import RealtyModel
 
 
 def home(request):
@@ -39,6 +39,6 @@ class ViewDbList(TemplateView):
 
 class ViewDbListJson(BaseDatatableView):
 
-    model = TestModel
+    model = RealtyModel
     # columns and order columns are provided by datatables in the request using
     # "name" in columns definition

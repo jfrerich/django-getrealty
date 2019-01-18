@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class TestModel(models.Model):
+class RealtyModel(models.Model):
     r_num = models.TextField('r_num', max_length=100, default='')
     rpg = models.TextField('rpg', default='')
     Property_Interest = models.TextField('Property_Interest', default='')
