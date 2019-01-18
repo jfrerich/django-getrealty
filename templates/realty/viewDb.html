@@ -1,0 +1,127 @@
+<title>Dashboard Template for Bootstrap</title>
+
+<!-- <main role="main" class="col&#45;sm&#45;9 ml&#45;sm&#45;auto col&#45;md&#45;10 pt&#45;3"> -->
+<h1>Dashboard = app/viewDb.html</h1>
+
+<p><a id="jason2" href="#testPage_jason2" data-toggle="tab_jason2">Profile Link From Outside</a></p>
+
+<!-- <table id="example" class="compact display nowrap cell&#45;border" style="width=100%"> -->
+<table id="viewdbtable" class="table nowrap table-sm table-bordered table-striped table-hover" style="width=100%">
+
+<script>
+
+  window.$ = window.jquery = require("jquery");
+  window.popper = require("popper.js");
+  require("bootstrap");
+  $('a[data-toggle="tab_jason2"]').click(function (e) {
+      $(".tab-pane").removeClass("active in");
+      $("#testPage").addClass("active in");
+      console.log('jason')
+      $('a[data-target="#testPage"]').tab('show');
+      return false;
+  });
+</script>
+
+  <thead>
+    <tr style="text-align: center;">
+      <th colspan="2"></th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="4">Links</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">Maps</th>
+      <th colspan="2"></th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Prop_Details</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">Tax_Due</th>	
+      <th colspan="1"></th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">TaxDates</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Different	</th>
+      <th colspan="2"></th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">TimesSold</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Appraised</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">AppraisedMaxReduced</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Assess</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">AssessMaxReduced</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">ImpNHS</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">ImpNHSMaxReduced</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">ImpHS</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">ImpHSMaxReduced</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">LandHS</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">LandHSMaxReduced</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="3">LandNHS</th>
+      <th style="background-color: #757575; border-right:1px solid #000" colspan="2">LandNHSMaxReduced</th>
+      <th style="background-color: #757575" colspan="2">DaysLate</th>		
+    </tr>
+    <tr style="border-right:1px border-top:1px solid #000; background-color:#B8B8B8">
+      <th>r_num</th>
+      <th>Property Interest</th>
+
+      <th>Bills</th>
+      <th>Det</th>
+      <th>Hist</th>
+      <th>Data</th>
+
+      <th>GIS</th>
+      <th>map</th>
+
+      <th>NOTES</th>
+      <th>Subd</th>
+
+      <th>Acres</th>	
+      <th>AssessVal</th>	
+      <th>AssessMinDue</th>	
+
+      <th>PctToAss</th>	
+      <th>TotAmtDue</th>	
+
+      <th>DatePulled</th>	
+      <th>OldestDue</th>	
+      <th>LastPaid</th>	
+      <th>LastYrPaid</th>	
+      <th>Addr</th>	
+      <th>Zip</th>	
+      <th>State</th>	
+      <th>NHS_imp</th>	
+      <th>InstallYr</th>	
+      <th>Num</th>	
+      <th>Last</th>	
+      <th>AppPctOfMax</th>	
+      <th>AppLastVal</th>	
+      <th>AppMaxVal</th>	
+      <th>AppMaxAmt</th>	
+      <th>AppMaxYr</th>	
+      <th>AssPctOfMax</th>	
+      <th>AssLastVal</th>	
+      <th>AssMaxVal</th>	
+      <th>AssMaxAmt</th>	
+      <th>AssMaxYr</th>	
+      <th>LastPctOfMax</th>	
+      <th>LastVal</th>	
+      <th>MaxVal</th>	
+      <th>MaxAmt</th>	
+      <th>MaxYr</th>	
+      <th>ihsPctOfMax</th>	
+      <th>ihsLastVal</th>	
+      <th>ihsMaxVal</th>	
+      <th>ihsMaxAmt</th>	
+      <th>ihsMaxYr</th>	
+      <th>lhsPctOfMax</th>	
+      <th>lhsLastVal</th>	
+      <th>lhsMaxVal</th>	
+      <th>lhsMaxAmt</th>	
+      <th>lhsMaxYr</th>	
+      <th>lnhsPctOfMax</th>	
+      <th>lnhsLastVal</th>	
+      <th>lnhsMaxVal</th>	
+      <th>lnhsMaxAmt</th>	
+      <th>lnhsMaxYr</th>	
+      <th>Curr</th>	
+      <th>Max</th>	
+      <th>PctDiffAddr</th>	
+      <th>PropAddr</th>	
+      <th>OwnerAddr</th>	
+      <th>OwnerName</th>	
+      <th>LegalDesc</th>
+    </tr>
+  </thead>
+</table>
+
+<script language="javascript" class="init" src="js/table.js"></script>
+

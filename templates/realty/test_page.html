@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<!-- <main role="main" class="col&#45;sm&#45;9 ml&#45;sm&#45;auto col&#45;md&#45;10 pt&#45;3"> -->
+<h1>index.html</h1> 
+
+<h4>Table 1</h4> 
+<table id="table_id" class="table table-striped tables-border display compact cell-border" style="width:100%">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+    </tr>
+    <tr>
+        <td>Garrett Winters</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>63</td>
+    </tr>
+  </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+  var $  = require( 'jquery' );
+  var dt = require( 'datatables.net-bs4' )();
+  $(document).ready(function() {
+    $('#table_id').dataTable({
+      caption: "Example table with simple columns",
+    });
+  });
+</script>
+<!-- </main> -->

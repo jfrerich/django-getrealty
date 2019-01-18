@@ -1,0 +1,32 @@
+<title>Dashboard Template for Bootstrap</title>
+
+<!-- <main role="main" class="col&#45;sm&#45;9 ml&#45;sm&#45;auto col&#45;md&#45;10 pt&#45;3"> -->
+<h1>Dashboard = app/viewDb.html</h1>
+
+<h2>Go to test_page</h2>
+<p>This page is a test to show how to create a link in html that, when clicked,
+will go to a different pill. The test is to setup for creating a link from the
+DataTables page that will take the user to a detailed page showing the results
+of one Rnumber.  This page will make it easier to view all the data for one
+property on one page, instead of scrolling across the large DataTables table</p>
+
+<p><a id="jason" href="#testPage_jason" data-toggle="tab_jason">Profile Link From Outside</a></p>
+
+<script>
+
+  window.$ = window.jquery = require("jquery");
+  window.popper = require("popper.js");
+  require("bootstrap");
+
+  // https://jsfiddle.net/JasonFrerich/9qzb6nf1/2/
+  // https://stackoverflow.com/questions/34491182/make-bootstrap-tab-active-on-the-bases-of-url-link
+  $('a[data-toggle="tab_jason"]').click(function (e) {
+      $(".tab-pane").removeClass("active in");
+      $("#testPage").addClass("active in");
+      console.log('jason')
+      $('a[data-target="#testPage"]').tab('show');
+      return false;
+  });
+
+</script>
+

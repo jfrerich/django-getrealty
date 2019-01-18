@@ -1,13 +1,99 @@
-{% extends "base.html" %}
+{% extends "jobs/base.html" %}
 {% load i18n %}
 
 {% block content %}
-    <p>
-         {% blocktrans %}This is a sample application showing usage of django-datatables-view with:{% endblocktrans %}
-    </p>
-    <a href="{% url 'datatables_19' %}">{% trans "Datatables 1.9.x version (backward compatibility)- User model" %}</a>
-    <br />
-    <a href="{% url 'datatables_110' %}">{% trans "Datatables 1.10.x version - User model" %}</a>
-    <br />
-    <a href="{% url 'testmodel' %}">{% trans "Datatables 1.10.x version - TestModel model" %}</a>
+
+  <body>
+
+    <!-- <header> -->
+			<!-- <nav id="navtop&#45;placeholder"class="navbar navbar&#45;expand&#45;md navbar&#45;dark fixed&#45;top bg&#45;dark"> -->
+			<!-- 	<script> -->
+			<!-- 		$('#navtop&#45;placeholder').load('navbartop.html'); -->
+			<!-- 	</script> -->
+			<!-- </nav> -->
+		<!-- </header> -->
+
+    <div class="container-fluid">
+      <div style="margin-top: 10px" class="row">
+        <nav class="sidebar col-lg-2 d-none d-lg-block bg-light">
+
+          <div class="sidebar-sticky">
+
+            <ul class="nav nav-pills flex-column">
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="{% url 'viewDb' %}" data-target="#overviewPage">
+                <i class="fa fa-home"></i> Overview </a>
+              </li>
+              <li class="nav-item">
+                <hr/>
+                <a class="nav-link" data-toggle="pill" href="getRealtyOptions.html" data-target="#getRealtyOptionsPage">
+                <i class="fa fa-search"></i> Query Properties </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="{% url 'viewDb' %}" data-target="#viewDbPage">
+                <i class="fa fa-file-text-o"></i> View Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="propertydetail.html" data-target="#propertyDetailPage">
+                <i class="fa fa-file-text-o"></i> Property Detail </a>
+              </li>
+              <li class="nav-item">
+                <hr/>
+                <a class="nav-link" data-toggle="pill" href="test_page.html" data-target="#testPage">
+                <i class="fa fa-life-ring"></i> test_page.html</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="testPage2.html" data-target="#test_Page2">
+                <i class="fa fa-life-ring"></i> testPage2.html</a>
+              </li>
+            </ul>
+
+          </div>
+
+        </nav>
+
+        <main role="main" class="ml-lg-auto col-lg-10">
+          <div class="tab-content col-lg-10 visibility">
+              <div role="tabpanel" class="tab-pane" id="overviewPage"></div>
+              <div role="tabpanel" class="tab-pane" id="getRealtyOptionsPage"></div> 
+              <div role="tabpanel" class="tab-pane" id="viewDbPage"></div>
+              <div role="tabpanel" class="tab-pane" id="propertyDetailPage"></div>
+              <div role="tabpanel" class="tab-pane" id="testPage"></div> 
+              <div role="tabpanel" class="tab-pane" id="test_Page2"></div> 
+          </div>
+        </main>
+
+      </div>
+    </div>
+
+    <script>
+      window.$ = window.jquery = require("jquery");
+      window.popper = require("popper.js");
+      require("bootstrap");
+
+      // handle clicking of pills
+      // change pill highlight and load html for selected pill
+      // https://stackoverflow.com/questions/36982744/bootstrap-tab-ajax-load-content-when-page-loaded
+      $('[data-toggle="pill"]').click(function(e) {
+          // alert('clicked', e.target.href)
+          var $this = $(this),
+              loadurl = $this.attr('href'),
+              targ = $this.attr('data-target');
+
+          console.log('loadurl: ' + loadurl)
+          console.log('this: ' + this)
+          console.log('targ: ' + targ)
+
+          $.get(loadurl, function(data) {
+             $(targ).html(data);
+          });
+
+          $this.tab('show');
+          return false;
+      });
+
+    </script>
+
+  </body>
+</html>
 {% endblock %}
