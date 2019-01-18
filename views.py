@@ -10,9 +10,7 @@ def home(request):
 
 
 def viewDb(request):
-    # return render(request, 'realty/viewDb.html')
-    return render(request, 'realty/testmodel_list.html', {'nbar': 'realty'})
-    # template_name = 'realty/testmodel_list.html'
+    return render(request, 'realty/viewDb.html', {'nbar': 'realty'})
 
 
 def overview(request):
@@ -35,12 +33,11 @@ def testPage2(request):
     return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
 
 
-class TestModelList(TemplateView):
-    template_name = 'realty/testmodel_list.html'
-    # template_name = 'realty/viewDb.html'
+class ViewDbList(TemplateView):
+    template_name = 'realty/viewDb.html'
 
 
-class TestModelListJson(BaseDatatableView):
+class ViewDbListJson(BaseDatatableView):
 
     model = TestModel
     # columns and order columns are provided by datatables in the request using
