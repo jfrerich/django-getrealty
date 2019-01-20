@@ -3,8 +3,12 @@ from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.utils.html import format_html
 import re
+from datatableview.views import DatatableView, Datatable
 
 from realty.models import RealtyModel
+
+
+
 
 
 def home(request):
@@ -35,13 +39,79 @@ def testPage2(request):
     return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
 
 
+####################################
+
+class MyDatatable(Datatable):
+    class Meta:
+        # columns = ['id', 'headline']
+        request_method = 'POST'
+        # structure_template = "datatableview/bootstrap_structure.html",
+        structure_template = "realty/bootstrap_structure.html",
+
+
+class ZeroConfigurationDatatableView(DatatableView):
+
+  model = RealtyModel
+  # template_name = 'core/sstnp_list.html'
+  datatable_class = MyDatatable
+  template_name = "realty/mymodel_list.html"
+
+  # class datatable_class(Datatable):
+
+    # class Meta:
+    #   model = SSTnp
+    #   structure_template = 'datatableview/default_structure.html'
+
+
+
+
+
+class myZeroConfigurationDatatableView(DatatableView):
+    model = RealtyModel
+
+    def get_template_names(self):
+        return "realty/mymodel_list.html"
+
+
+class mymodel_list(TemplateView):
+    template_name = 'realty/mymodel_list.html'
+
+#
+# class MyDatatable(Datatable):
+#     class Meta:
+#         model = Entry
+#         columns = ['id', 'headline', 'pub_date', 'n_comments', 'n_pingbacks']
+#         ordering = ['-id']
+#         page_length = 5
+#         search_fields = ['blog__name']
+#         unsortable_columns = ['n_comments']
+#         hidden_columns = ['n_pingbacks']
+#         structure_template = 'datatableview/default_structure.html'
+#
+# class ConfigureDatatableObjectDatatableView(DatatableView):
+#     model = RealtyModel
+#     datatable_class = MyDatatable
+
+
+
+
+####################################
+
+
+
+
+
+####################################
 class ViewDbList(TemplateView):
     template_name = 'realty/viewDb.html'
 
 
 class ViewDbListJson(BaseDatatableView):
 
+    # print("_querydict", BaseDatatableView._querydict)
     model = RealtyModel
+    print("model", model)
+    print("RealtyModel", BaseDatatableView._querydict)
     columns = ['r_num',
                # 'rpg',
                'Property_Interest',

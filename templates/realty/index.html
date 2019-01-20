@@ -58,6 +58,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
       // window.$ = window.jquery = require("jquery");
       // window.popper = require("popper.js");
@@ -68,6 +69,7 @@
       // https://stackoverflow.com/questions/36982744/bootstrap-tab-ajax-load-content-when-page-loaded
       $('[data-toggle="pill"]').click(function(e) {
           // alert('clicked', e.target.href)
+          // e.preventDefault()
           var $this = $(this),
               loadurl = $this.attr('href'),
               targ = $this.attr('data-target');
@@ -80,7 +82,13 @@
              $(targ).html(data);
           });
 
-          $this.tab('show');
+    // $('a[href="#passive_order_categories"]').tab('show');
+        
+          var junk = "'a[href=" + $this.attr('data-target') + "]'"
+          var junk = "a[href=" + $this.attr('data-target') + "]"
+          console.log(junk)
+          $($(junk)).tab('show');
+          // $this.tab('show');
           return false;
       });
 
