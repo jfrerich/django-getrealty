@@ -74,5 +74,6 @@ class RealtyModel(models.Model):
     @property
     def testproperty(self):
         return '{} testprop'.format(self.name)
+
 # from django.conf.urls import url
 # Create your models here.

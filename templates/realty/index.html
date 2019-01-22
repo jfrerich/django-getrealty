@@ -24,6 +24,10 @@
               <i class="fa fa-file-text-o"></i> View Properties</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="{% url 'viewModelDb_data' %}" data-target="#viewDbModelPage">
+              <i class="fa fa-file-text-o"></i> View Model Properties</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="{% url 'detail' %}" data-target="#propertyDetailPage">
               <i class="fa fa-file-text-o"></i> Property Detail </a>
             </li>
@@ -47,6 +51,7 @@
             <div role="tabpanel" class="tab-pane" id="overviewPage"></div>
             <div role="tabpanel" class="tab-pane" id="getRealtyOptionsPage"></div> 
             <div role="tabpanel" class="tab-pane" id="viewDbPage"></div>
+            <div role="tabpanel" class="tab-pane" id="viewDbModelPage"></div>
             <div role="tabpanel" class="tab-pane" id="propertyDetailPage"></div>
             <div role="tabpanel" class="tab-pane" id="testPage"></div> 
             <div role="tabpanel" class="tab-pane" id="test_Page2"></div> 
@@ -84,12 +89,12 @@
 
     // $('a[href="#passive_order_categories"]').tab('show');
         
-          var junk = "'a[href=" + $this.attr('data-target') + "]'"
-          var junk = "a[href=" + $this.attr('data-target') + "]"
-          console.log(junk)
-          $($(junk)).tab('show');
-          // $this.tab('show');
-          return false;
+          // var junk = "'a[href=" + $this.attr('data-target') + "]'"
+          // var junk = "a[href=" + $this.attr('data-target') + "]"
+          // console.log(junk)
+          // $($(junk)).tab('show');
+          // // $this.tab('show');
+          // return false;
       });
 
     </script>

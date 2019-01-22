@@ -1,34 +1,23 @@
-<table class="display compact nowrap datatable table table-striped table-bordered" data-source-url="{{ url }}" id="{{ config.id }}"
+<table class="display datatable compact nowrap table table-striped table-bordered" data-source-url="{{ url }}" id="{{ config.id }}"
        data-ajax-method="{{ config.request_method }}"
        data-result-counter-id="{{ config.result_counter_id }}"
        data-page-length="{{ config.page_length }}">
     <thead>
-      <tr style="text-align: center;">
-        <th colspan="2"></th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="4">Links</th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="2">Maps</th>
-        <th colspan="2"></th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Prop_Details</th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="2">Tax_Due</th>	
-        <th colspan="1"></th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="3">TaxDates</th>
-        <th style="background-color: #757575; border-right:1px solid #000" colspan="3">Different	</th>
-        <th colspan="2"></th>
-      </tr>
-      <!-- <tr> -->
-      <!--     {% for column in columns %} -->
-      <!--       <th data&#45;name="{{ column.label|slugify }}"{{ column.attributes|safe }}>{{ column.label }}</th> -->
-      <!--     {% endfor %} -->
-      <!-- </tr> -->
+        <tr>
+            {% for column in columns %}
+            <th data-name="{{ column.label|slugify }}"{{ column.attributes|safe }}>{{ column.label }}</th>
+            {% endfor %}
+        </tr>
     </thead>
-      {% if config.footer %}
-        <tfoot>
-            <tr>
-                {% for column in datatable %}
-                    <th>{{ column.label }}</th>
-                {% endfor %}
-            </tr>
-        </tfoot>
-      {% endif %}
+    {% if config.footer %}
+    <tfoot>
+        <tr>
+            {% for column in datatable %}
+                <th>{{ column.label }}</th>
+            {% endfor %}
+        </tr>
+    </tfoot>
+    {% endif %}
 </table>
+
 

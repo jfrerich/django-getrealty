@@ -8,75 +8,104 @@ from datatableview.views import DatatableView, Datatable
 from realty.models import RealtyModel
 
 
-
-
-
 def home(request):
     return render(request, 'realty/index.html', {'nbar': 'realty'})
-
 
 def viewDb(request):
     return render(request, 'realty/viewDb.html', {'nbar': 'realty'})
 
+def viewModelDb(request):
+    return render(request, 'realty/viewModelDb.html', {'nbar': 'realty'})
 
 def overview(request):
     return render(request, 'realty/overview.html', {'nbar': 'realty'})
 
-
 def query(request):
     return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
-
 
 def detail(request):
     return render(request, 'realty/propertydetail.html', {'nbar': 'realty'})
 
-
 def testpage(request):
     return render(request, 'realty/test_page.html', {'nbar': 'realty'})
-
 
 def testPage2(request):
     return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
 
 
-####################################
-
 class MyDatatable(Datatable):
+
     class Meta:
-        # columns = ['id', 'headline']
         request_method = 'POST'
-        # structure_template = "datatableview/bootstrap_structure.html",
+        processors = {
+            'r_num': 'get_rnum_link',
+            'Files_xx_BillsF': 'get_bills_link',
+            'Files_xx_HistF': 'get_hist_link',
+            'Files_xx_DetF': 'get_det_link',
+            'Files_xx_DataF': 'get_data_link',
+            'Maps_xx_Map': 'get_map_link',
+            'Maps_xx_GIS': 'get_external_maps_link',
+        }
+
+        # rename all fields with _xx_ to shorten headers in table
+        my_dict2 = dict()
+        for field in RealtyModel._meta.get_fields():
+            if re.search(r'_xx_', field.name):
+                result = re.sub(r'.*_xx_', '',   field.name)
+                my_dict2[field.name] = result
+        request_method = 'POST'
         structure_template = "realty/bootstrap_structure.html",
+
+        labels = my_dict2
+
+    def get_rnum_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="#testPageJunk">{}</a>'.format(
+            instance.r_num)
+        return value
+
+    def get_bills_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="{}">Bills</a>'.format(
+            instance.Files_xx_BillsF)
+        return value
+
+    def get_hist_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="{}">Hist</a>'.format(
+            instance.Files_xx_HistF)
+        return value
+
+    def get_det_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="{}">Det</a>'.format(
+            instance.Files_xx_DetF)
+        return value
+
+    def get_data_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="{}">Data</a>'.format(
+            instance.Files_xx_DataF)
+        return value
+
+    def get_external_maps_link(self, instance, **kwargs):
+        value = '<a class="clickablename" href="{}">GIS</a>'.format(
+            instance.Maps_xx_GIS)
+        return value
+
+    def get_map_link(self, instance, **kwargs):
+        value = ""
+        if instance.Maps_xx_Map:
+            value = '<a class="clickablename" href="{}">Map</a>'.format(
+                instance.Maps_xx_GIS)
+        return value
 
 
 class ZeroConfigurationDatatableView(DatatableView):
 
-  model = RealtyModel
-  # template_name = 'core/sstnp_list.html'
-  datatable_class = MyDatatable
-  template_name = "realty/mymodel_list.html"
-
-  # class datatable_class(Datatable):
-
-    # class Meta:
-    #   model = SSTnp
-    #   structure_template = 'datatableview/default_structure.html'
-
-
-
-
-
-class myZeroConfigurationDatatableView(DatatableView):
     model = RealtyModel
+    # template_name = 'core/sstnp_list.html'
+    datatable_class = MyDatatable
+    template_name = "realty/mymodel_list.html"
+    # structure_template = 'realty/bootstrap_structure.html'
+    # structure_template = 'datatableview/bootstrap_structure.html'
 
-    def get_template_names(self):
-        return "realty/mymodel_list.html"
 
-
-class mymodel_list(TemplateView):
-    template_name = 'realty/mymodel_list.html'
-
-#
 # class MyDatatable(Datatable):
 #     class Meta:
 #         model = Entry
@@ -93,17 +122,8 @@ class mymodel_list(TemplateView):
 #     datatable_class = MyDatatable
 
 
-
-
-####################################
-
-
-
-
-
-####################################
-class ViewDbList(TemplateView):
-    template_name = 'realty/viewDb.html'
+# class ViewDbList(TemplateView):
+#     template_name = 'realty/viewDb.html'
 
 
 class ViewDbListJson(BaseDatatableView):

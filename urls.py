@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import views
-from .views import ViewDbList, ViewDbListJson, ZeroConfigurationDatatableView
+# from .views import ViewDbList, ViewDbListJson, ZeroConfigurationDatatableView
+from .views import ViewDbListJson, ZeroConfigurationDatatableView
 
 urlpatterns = [
     path('', views.home, name='realty'),
@@ -13,7 +14,9 @@ urlpatterns = [
     # path('viewDb/', views.modelDb, name='modelDb'),
     # path('javascript-initialization/', views.JavascriptInitializationView.as_view(), name="js-init"),
 
-    path('viewModelDb_data/', ZeroConfigurationDatatableView.as_view(), name="viewModelDb_list_json"),
+    # path('viewModelDb/', views.viewModelDb, name="viewModelDb"),
+    path('viewModelDb_data/', ZeroConfigurationDatatableView.as_view(), name="viewModelDb_data"),
+    # path('viewModelDb_data/', views.ZeroConfigurationDatatableView, name="viewModelDb_list_json"),
 
     path('overview/', views.overview, name='overview'),
     path('query/', views.query, name='query'),
