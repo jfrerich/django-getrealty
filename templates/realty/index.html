@@ -47,7 +47,7 @@
       </nav>
 
       <main role="main" class="ml-lg-auto col-lg-10">
-        <div class="tab-content col-lg-10 visibility">
+        <div class="tab-content col-lg-12 visibility">
             <div role="tabpanel" class="tab-pane" id="overviewPage"></div>
             <div role="tabpanel" class="tab-pane" id="getRealtyOptionsPage"></div> 
             <div role="tabpanel" class="tab-pane" id="viewDbPage"></div>
@@ -63,16 +63,33 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
-      // window.$ = window.jquery = require("jquery");
-      // window.popper = require("popper.js");
-      // require("bootstrap");
+
+      // $(function() {
+      //   $("#employeeLink").on("click",function(e) {
+      //     e.preventDefault(); // cancel the link itself
+      //     $.post(this.href,function(data) {
+      //         $("#someContainer").html(data);
+      //     });
+      //   });
+      // });
 
       // handle clicking of pills
       // change pill highlight and load html for selected pill
       // https://stackoverflow.com/questions/36982744/bootstrap-tab-ajax-load-content-when-page-loaded
+      var csrftoken = Cookies.get('csrftoken');
+      console.log('csrftoken' + csrftoken)
+
+      // // var csrf_token = $('meta[name="csrf-token"]').attr('content');
+      // function csrfSafeMethod(method) {
+      //     // these HTTP methods do not require CSRF protection
+      //     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      // }
+
       $('[data-toggle="pill"]').click(function(e) {
+          // e.preventDefault(); // cancel the link itself
           // alert('clicked', e.target.href)
           // e.preventDefault()
           var $this = $(this),
@@ -83,18 +100,34 @@
           console.log('this: ' + this)
           console.log('targ: ' + targ)
 
+          // $.ajaxSetup({
+          //     beforeSend: function(xhr, settings) {
+          //         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          //             xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          //         }
+          //     }
+          // });
+
+          // $.ajaxPrefilter(function(options, originalOptions, jqXHR){
+          //     if (options.type.toLowerCase() === "post") {
+          //         // initialize `data` to empty string if it does not exist
+          //         options.data = options.data || "";
+          //
+          //         // add leading ampersand if `data` is non-empty
+          //         options.data += options.data?"&":"";
+          //
+          //         // add _token entry
+          //         options.data += "_token=" + encodeURIComponent(csrftoken);
+          //     }
+          // });
+
+          // $.post(loadurl, function(data) {
           $.get(loadurl, function(data) {
              $(targ).html(data);
           });
-
-    // $('a[href="#passive_order_categories"]').tab('show');
-        
-          // var junk = "'a[href=" + $this.attr('data-target') + "]'"
-          // var junk = "a[href=" + $this.attr('data-target') + "]"
-          // console.log(junk)
-          // $($(junk)).tab('show');
-          // // $this.tab('show');
-          // return false;
+          
+          $this.tab('show');
+          return false;
       });
 
     </script>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.utils.html import format_html
@@ -96,6 +97,7 @@ class MyDatatable(Datatable):
         return value
 
 
+# @csrf_exempt
 class ZeroConfigurationDatatableView(DatatableView):
 
     model = RealtyModel

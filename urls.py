@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 # from .views import ViewDbList, ViewDbListJson, ZeroConfigurationDatatableView
@@ -15,7 +16,7 @@ urlpatterns = [
     # path('javascript-initialization/', views.JavascriptInitializationView.as_view(), name="js-init"),
 
     # path('viewModelDb/', views.viewModelDb, name="viewModelDb"),
-    path('viewModelDb_data/', ZeroConfigurationDatatableView.as_view(), name="viewModelDb_data"),
+    path('viewModelDb_data/', csrf_exempt(ZeroConfigurationDatatableView.as_view()), name="viewModelDb_data"),
     # path('viewModelDb_data/', views.ZeroConfigurationDatatableView, name="viewModelDb_list_json"),
 
     path('overview/', views.overview, name='overview'),
