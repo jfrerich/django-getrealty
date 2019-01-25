@@ -7,6 +7,7 @@ import re
 from datatableview.views import DatatableView, Datatable
 
 from realty.models import RealtyModel
+from realty.forms import QueryForm
 
 
 def home(request):
@@ -22,7 +23,12 @@ def overview(request):
     return render(request, 'realty/overview.html', {'nbar': 'realty'})
 
 def query(request):
-    return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
+    # return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
+
+    return render(request,
+                  'realty/getRealtyOptions.html',
+                  {'nbar': 'realty',
+                   'form': QueryForm()})
 
 def detail(request):
     return render(request, 'realty/propertydetail.html', {'nbar': 'realty'})
