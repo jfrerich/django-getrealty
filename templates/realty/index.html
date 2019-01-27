@@ -29,27 +29,17 @@
                 href="{% url 'viewModelDb_data' %}" 
                 data-target="#viewDbModelPage">
               <i class="fa fa-file-text-o"></i>View Db</a>
-
             </li>
-
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="{% url 'detail' %}" data-target="#propertyDetailPage">
               <i class="fa fa-file-text-o"></i>Detail</a>
             </li>
-            <!-- <li class="nav&#45;item"> -->
-            <!--   <a class="nav&#45;link" data&#45;toggle="tab" href="{% url 'testpage' %}" data&#45;target="#testPage"> -->
-            <!--   <i class="fa fa&#45;life&#45;ring"></i>test_page.html</a> -->
-            <!-- </li> -->
-            <!-- <li class="nav&#45;item"> -->
-            <!--   <a class="nav&#45;link" data&#45;toggle="tab" href="{% url 'testPage2' %}" data&#45;target="#test_Page2"> -->
-            <!--   <i class="fa fa&#45;life&#45;ring"></i>testPage2.html</a> -->
-            <!-- </li> -->
           </ul>
         </nav>
       </div>
 
+    <div class="container-fluid">
       <div class="row">
-        <!-- <main role="main" class="ml&#45;lg&#45;auto"> -->
           <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade" id="overviewPage"></div>
               <div role="tabpanel" class="tab-pane fade" id="getRealtyOptionsPage"></div> 
@@ -59,13 +49,11 @@
               <div role="tabpanel" class="tab-pane fade" id="testPage"></div> 
               <div role="tabpanel" class="tab-pane fade" id="test_Page2"></div> 
           </div>
-        <!-- </main> -->
       </div>
     </div>
-
+    </div>
 
     <script>
-
       // handle clicking of tabs
       // change tab highlight and load html for selected tab
       // https://stackoverflow.com/questions/36982744/bootstrap-tab-ajax-load-content-when-page-loaded
@@ -101,14 +89,11 @@
           // return false;
 
       });
-
       $(document).ready(function(){
           console.log('jason is here')
           // $('[data-toggle="tab"]:first').click();
           $('[data-target="#viewDbModelPage"]').click();
       });
-
     </script>
-
 
 {% endblock %}
