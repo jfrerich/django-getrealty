@@ -24,15 +24,15 @@
 
       {# datatables.js #}
       <!-- Load dependencies -->
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+      <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+      <!-- <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
 
       {# django-datatable-view #}
       <!-- <script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script> -->
-      <script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.min.js' %}"></script>
+      <!-- <script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.min.js' %}"></script> -->
 
       <script type="text/javascript" charset="utf8">
-          datatableview.auto_initialize = false;
+          // datatableview.auto_initialize = true;
       </script>
 
     {% endblock static %}
@@ -40,12 +40,11 @@
           $(document).ready(function(){
               var common_options = {
                 "bStateSave": true,
-                // "scrollCollapse": true,
+                "scrollCollapse": true,
                 dom: "flrtip",
                 scroller: true,
                 scrollX: true,
                 // "pagingType": "full_numbers",
-                // "dom": "Brltip",
                 // "columnDefs": [
                 //     {"className": "dt-center", "targets": [3,4,9,10,11]}
                 //   ],
