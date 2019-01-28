@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
+# from django.http import HttpResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from django.views.generic import TemplateView
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.utils.html import format_html
 import re
@@ -13,14 +14,18 @@ from realty.forms import QueryForm
 def home(request):
     return render(request, 'realty/index.html', {'nbar': 'realty'})
 
+
 def viewDb(request):
     return render(request, 'realty/viewDb.html', {'nbar': 'realty'})
+
 
 def viewModelDb(request):
     return render(request, 'realty/viewModelDb.html', {'nbar': 'realty'})
 
+
 def overview(request):
     return render(request, 'realty/overview.html', {'nbar': 'realty'})
+
 
 def query(request):
     # return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
@@ -30,11 +35,14 @@ def query(request):
                   {'nbar': 'realty',
                    'form': QueryForm()})
 
+
 def detail(request):
     return render(request, 'realty/propertydetail.html', {'nbar': 'realty'})
 
+
 def testpage(request):
     return render(request, 'realty/test_page.html', {'nbar': 'realty'})
+
 
 def testPage2(request):
     return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
@@ -46,10 +54,10 @@ class MyDatatable(Datatable):
         request_method = 'POST'
         processors = {
             'r_num': 'get_rnum_link',
-            'Files_xx_BillsF': 'get_bills_link',
-            'Files_xx_HistF': 'get_hist_link',
-            'Files_xx_DetF': 'get_det_link',
-            'Files_xx_DataF': 'get_data_link',
+            'Files_xx_BillsF': 'get_file_link',
+            'Files_xx_HistF': 'get_file_link',
+            'Files_xx_DetF': 'get_file_link',
+            'Files_xx_DataF': 'get_file_link',
             'Maps_xx_Map': 'get_map_link',
             'Maps_xx_GIS': 'get_external_maps_link',
         }
@@ -60,7 +68,6 @@ class MyDatatable(Datatable):
             if re.search(r'_xx_', field.name):
                 result = re.sub(r'.*_xx_', '',   field.name)
                 my_dict2[field.name] = result
-        request_method = 'POST'
         structure_template = "realty/bootstrap_structure.html",
 
         labels = my_dict2
@@ -70,24 +77,14 @@ class MyDatatable(Datatable):
             instance.r_num)
         return value
 
-    def get_bills_link(self, instance, **kwargs):
-        value = '<a class="clickablename" href="{}">Bills</a>'.format(
-            instance.Files_xx_BillsF)
-        return value
+    def get_file_link(self, instance, **kwargs):
+        field_name = kwargs.get('field_name')
+        file_name = kwargs.get('default_value')
+        short_name = re.sub('Files_xx_', '', field_name)
+        short_name = re.sub('F$', '', short_name)
 
-    def get_hist_link(self, instance, **kwargs):
-        value = '<a class="clickablename" href="{}">Hist</a>'.format(
-            instance.Files_xx_HistF)
-        return value
-
-    def get_det_link(self, instance, **kwargs):
-        value = '<a class="clickablename" href="{}">Det</a>'.format(
-            instance.Files_xx_DetF)
-        return value
-
-    def get_data_link(self, instance, **kwargs):
-        value = '<a class="clickablename" href="{}">Data</a>'.format(
-            instance.Files_xx_DataF)
+        value = '<a class="clickablename" href="{}">{}</a>'.format(
+            file_name, short_name)
         return value
 
     def get_external_maps_link(self, instance, **kwargs):
@@ -107,31 +104,30 @@ class MyDatatable(Datatable):
 class ZeroConfigurationDatatableView(DatatableView):
 
     model = RealtyModel
-    # template_name = 'core/sstnp_list.html'
     datatable_class = MyDatatable
     template_name = "realty/mymodel_list.html"
+    # model.objects.all().filter(r_num='R38849')
+    # print('RealtyModel.objects.all', RealtyModel.objects.all(), "\n")
+    # print('get_queryset', RealtyModel.objects.get_queryset(), "\n")
+    # print('get_context_data', RealtyModel.objects.get_context_data(), "\n")
     # structure_template = 'realty/bootstrap_structure.html'
     # structure_template = 'datatableview/bootstrap_structure.html'
+    # print('jason', DatatableView.get_context_data)
+    # AJAX response handler
 
+    # print('RealtyModel.objects.all', RealtyModel.objects.get_datatable_kwargs(), "\n")
 
-# class MyDatatable(Datatable):
-#     class Meta:
-#         model = Entry
-#         columns = ['id', 'headline', 'pub_date', 'n_comments', 'n_pingbacks']
-#         ordering = ['-id']
-#         page_length = 5
-#         search_fields = ['blog__name']
-#         unsortable_columns = ['n_comments']
-#         hidden_columns = ['n_pingbacks']
-#         structure_template = 'datatableview/default_structure.html'
-#
-# class ConfigureDatatableObjectDatatableView(DatatableView):
-#     model = RealtyModel
-#     datatable_class = MyDatatable
-
-
-# class ViewDbList(TemplateView):
-#     template_name = 'realty/viewDb.html'
+    # def get_queryset(self, *args, **kwargs):
+        # these all work
+        # return RealtyModel.objects.all().filter(r_num='R38849')
+        # return RealtyModel.objects.all().filter(id='1')
+        # return RealtyModel.objects.all().filter(
+        #     Subd__startswith='LAKE BASTROP ESTATES')
+        # print('ID', self.request.GET.get('ID'))
+        # print('r_num', self.request.GET.get('r_num'))
+        # return RealtyModel.objects.all().filter(r_num=self.request.GET.get('r_num'))
+        # return RealtyModel.objects.all().filter(
+        #     Property_Interest='Vetting')
 
 
 class ViewDbListJson(BaseDatatableView):
