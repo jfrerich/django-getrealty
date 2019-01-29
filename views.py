@@ -139,7 +139,6 @@ class ZeroConfigurationDatatableView(DatatableView):
         # return RealtyModel.objects.all().filter(r_num=self.request.GET.get('r_num'))
         # return RealtyModel.objects.all().filter(
         #     Property_Interest='Vetting')
-        # tesgting
 
 
 class detailview(ZeroConfigurationDatatableView):
