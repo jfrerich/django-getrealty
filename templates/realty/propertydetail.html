@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-<!-- <main role="main" class="col&#45;sm&#45;9 ml&#45;sm&#45;auto col&#45;md&#45;10 pt&#45;3"> -->
 <h1>propertydetail.html</h1> 
 
 <h4>Table 1</h4> 
@@ -10,3 +9,18 @@ Properties Tab.  The page will take a single Rnumber and layout the data so it
 is all visible on one page and easy for user to view, as opposed to scrolling
 across entire datatable.</p>
 
+              {% for column in datatable %}
+                  <th>{{ column.label }}</th>
+              {% endfor %}
+
+              <br/>
+              <br/>
+              jason {{ jason }}
+              <br/>
+              <br/>
+              detailview {{ detailview.compute_context }}
+{% for name, value in detailview.get_fields %}
+  {% if value %}
+    {{ name }} => {{ value }}
+  {% endif %}
+{% endfor %}

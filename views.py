@@ -28,7 +28,8 @@ def overview(request):
 
 
 def query(request):
-    # return render(request, 'realty/getRealtyOptions.html', {'nbar': 'realty'})
+    # return render(request, 'realty/getRealtyOptions.html',
+    #               {'nbar': 'realty'})
 
     return render(request,
                   'realty/getRealtyOptions.html',
@@ -48,6 +49,8 @@ def testPage2(request):
     return render(request, 'realty/testPage2.html', {'nbar': 'realty'})
 
 
+
+
 class MyDatatable(Datatable):
 
     class Meta:
@@ -62,22 +65,31 @@ class MyDatatable(Datatable):
             'Maps_xx_GIS': 'get_external_maps_link',
         }
 
-        # rename all fields with _xx_ to shorten headers in table
-        my_dict2 = dict()
-        for field in RealtyModel._meta.get_fields():
-            if re.search(r'_xx_', field.name):
-                result = re.sub(r'.*_xx_', '',   field.name)
-                my_dict2[field.name] = result
+        def get_labels():
+            '''rename all fields with _xx_ to shorten headers in table
+            '''
+            my_dict2 = dict()
+            for field in RealtyModel._meta.get_fields():
+                if re.search(r'_xx_', field.name):
+                    result = re.sub(r'.*_xx_', '',   field.name)
+                    my_dict2[field.name] = result
+            return my_dict2
+
+        labels = get_labels()
+
         structure_template = "realty/bootstrap_structure.html",
 
-        labels = my_dict2
 
     def get_rnum_link(self, instance, **kwargs):
-        value = '<a class="clickablename" href="#testPageJunk">{}</a>'.format(
+        # value = '<a class="clickablename" href="#propertyDetailPage">{}</a>'.format(
+        #     instance.r_num)
+        value = '<a class="clickablename" href="#junkpage">{}</a>'.format(
             instance.r_num)
         return value
 
     def get_file_link(self, instance, **kwargs):
+        '''create clickable link to local files
+        '''
         field_name = kwargs.get('field_name')
         file_name = kwargs.get('default_value')
         short_name = re.sub('Files_xx_', '', field_name)
@@ -99,7 +111,6 @@ class MyDatatable(Datatable):
                 instance.Maps_xx_GIS)
         return value
 
-
 # @csrf_exempt
 class ZeroConfigurationDatatableView(DatatableView):
 
@@ -117,25 +128,49 @@ class ZeroConfigurationDatatableView(DatatableView):
 
     # print('RealtyModel.objects.all', RealtyModel.objects.get_datatable_kwargs(), "\n")
 
-    # def get_queryset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         # these all work
-        # return RealtyModel.objects.all().filter(r_num='R38849')
+        # print('ID', self.request.GET.get('ID'))
+        print('r_num', self.request.GET.get('r_num'))
+        return RealtyModel.objects.all().filter(r_num='R38849')
         # return RealtyModel.objects.all().filter(id='1')
         # return RealtyModel.objects.all().filter(
         #     Subd__startswith='LAKE BASTROP ESTATES')
-        # print('ID', self.request.GET.get('ID'))
-        # print('r_num', self.request.GET.get('r_num'))
         # return RealtyModel.objects.all().filter(r_num=self.request.GET.get('r_num'))
         # return RealtyModel.objects.all().filter(
         #     Property_Interest='Vetting')
+
+
+class detailview(ZeroConfigurationDatatableView):
+    template_name = "realty/propertydetail.html"
+    manor_status = RealtyModel.objects.filter(r_num='R38849')
+
+    # return render_to_response('realty/propertydetail.html', {'jason': 'jason'})
+    # print(my_values)
+    # print('get_context_data', RealtyModel.objects.all().filter(r_num='R38849').values(), "\n")
+    # print(context)
+    # print([field.name for field in RealtyModel._meta.fields])
+    def compute_context(self, request, username):
+        super(ZeroConfigurationDatatableView).as_view()(request)
+
+    # print(response)
+    # def get_context_data(self, **kwargs):
+    #     return {'jason frerich': 'junk'}
+    #
+    # def get_fields(self):
+    #     my_values =  RealtyModel.objects.all().filter(r_num='R38849').values()
+    #     print('my_values', my_values)
+    #     return my_values
+        # return [(field.name, field.value_to_string(self)) for field in RealtyModel._meta.fields]
+
+    # render_to
 
 
 class ViewDbListJson(BaseDatatableView):
 
     # print("_querydict", BaseDatatableView._querydict)
     model = RealtyModel
-    print("model", model)
-    print("RealtyModel", BaseDatatableView._querydict)
+    # print("RealtyModel", BaseDatatableView._querydict)
     columns = ['r_num',
                # 'rpg',
                'Property_Interest',
@@ -210,7 +245,7 @@ class ViewDbListJson(BaseDatatableView):
             my_rnumber = '{0}'.format(row.r_num)
             link = format_html(
                 # "<a class=\"clickablename\" href=\"Junk\">{}</a>",
-                "<a class=\"clickablename\" href=\"#testPageJunk\">{}</a>",
+                "<a class=\"clickablename\" href=\"#propertyDetailPage\">{}</a>",
                 my_rnumber)
             return link
 
