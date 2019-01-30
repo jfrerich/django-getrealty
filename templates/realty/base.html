@@ -54,7 +54,7 @@
 
                     // r_num
                     var column_num  = 1
-                    if(/^M/.test(data[column_num])){ 
+                    if(/M.*/.test(data[column_num])) { 
                         $('td:eq(' + column_num + ')',row).css('background-color', '#BFECC7');
                     } else {
                         $('td:eq(' + column_num + ')',row).css('background-color', '#B8B8B8');
