@@ -129,11 +129,11 @@ class ZeroConfigurationDatatableView(DatatableView):
 
     # print('RealtyModel.objects.all', RealtyModel.objects.get_datatable_kwargs(), "\n")
 
-    def get_queryset(self, *args, **kwargs):
-        # these all work
-        # print('ID', self.request.GET.get('ID'))
-        print('r_num', self.request.GET.get('r_num'))
-        return RealtyModel.objects.all().filter(r_num='R38849')
+    # def get_queryset(self, *args, **kwargs):
+    #     # these all work
+    #     # print('ID', self.request.GET.get('ID'))
+    #     print('r_num', self.request.GET.get('r_num'))
+    #     return RealtyModel.objects.all().filter(r_num='R38849')
         # return RealtyModel.objects.all().filter(id='1')
         # return RealtyModel.objects.all().filter(
         #     Subd__startswith='LAKE BASTROP ESTATES')
