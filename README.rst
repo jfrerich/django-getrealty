@@ -1,6 +1,7 @@
 =====
 realty
 =====
+export PYTHONPATH="$HOME/code/mylibraries/python"
 
 realty is a Django app to accompany the python getrealty program
 
@@ -20,4 +21,4 @@ Quick start
 
 3. Run `python manage.py migrate` to create the realty models.
 
-4. Visit http://127.0.0.1:8000/polls/ to view realty data
+4. Visit http://127.0.0.1:8000/realty to view realty data
