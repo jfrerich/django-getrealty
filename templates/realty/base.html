@@ -167,9 +167,15 @@
           $('#mytable').on('click', 'tbody td', function() {
             // when click on r_num, take user to detail page for better look at
             // details of property.
+            
+            // only allow clicking click on r_num column to trigger page
+            // redirectr
+            if ($(this).index() != 1) {
+              return;
+            }
 
             //get textContent of the TD
-            console.log('TD cell textContent : ', this.textContent)
+            // console.log('TD cell textContent : ', this.textContent)
 
             // change to propertyDetailPage
             $(".tab-pane").removeClass("active show");
