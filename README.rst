@@ -1,7 +1,6 @@
 =====
 realty
 =====
-export PYTHONPATH="$HOME/code/mylibraries/python"
 
 realty is a Django app to accompany the python getrealty program
 
