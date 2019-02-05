@@ -15,6 +15,7 @@ setup(
     license='MIT License',  # example license
     description='A simple Django app to view realty data.',
     long_description=README,
+    test_suite="runtests.run_tests",
     # url='https://www.example.com/',
     # author='Your Name',
     # author_email='yourname@example.com',
