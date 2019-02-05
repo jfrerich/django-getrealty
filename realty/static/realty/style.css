@@ -1,0 +1,13 @@
+/* not active */
+/* .nav-pills .nav-link:not(.active) { */
+/*     background-color: #dee2e6 */
+/* } */
+
+/* .nav-pills .nav-link.active { */
+/*     background-color: #dee2e6 */
+/* } */
+/* active (faded) *<D-C>
+.nav-pills .nav-link {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: white;
+}
